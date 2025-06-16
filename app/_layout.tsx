@@ -1,29 +1,26 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import React from 'react';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <View style={styles.appContainer}>
+      <View>
+        <TextInput placeholder="Your course goal!" />
+        <Button title="Add Goal" />
+      </View>
+      <View>
+        <Text>List of goals...</Text>
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  appContainer: {
+    padding: 50,
+  },
+});
+/**
+ * 1. Create a new project => npx create-expo-app@latest
+ * <View> komponenti => React Native'in birinci komponenti. Bununla birlikte <Text> komponenti de kullanılır.
+ */
